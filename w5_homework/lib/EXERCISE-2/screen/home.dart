@@ -13,8 +13,9 @@ class Home extends StatelessWidget {
     return Consumer<ColorCounters>(
       builder: (context, model, child) {
         return Scaffold(
-          body:
-              model.currentIndex == 0 ? ColorTapsScreen() : StatisticsScreen(),
+          body: model.currentIndex == 0
+              ? const ColorTapsScreen()
+              : const StatisticsScreen(),
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: model.currentIndex,
             onTap: (index) => model.setCurrentIndex(index),

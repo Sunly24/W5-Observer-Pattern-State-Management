@@ -11,14 +11,14 @@ class PostProvider extends ChangeNotifier {
 
   PostProvider({required PostRepository repository}) : _repository = repository;
 
-  void fetchPost(int postId) async {
+  void fetchPosts() async {
     // 1-  Set loading state
     postsValue = AsyncValue.loading();
     notifyListeners();
 
     try {
       // 2   Fetch the data
-      List<Post> posts = await _repository.getPosts(postId);
+      List<Post> posts = await _repository.fetchPosts();
 
       // 3  Set success state
       postsValue = AsyncValue.success(posts);

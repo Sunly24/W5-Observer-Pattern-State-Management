@@ -5,7 +5,7 @@ import 'post_repository.dart';
 class MockPostRepository extends PostRepository {
   @override
   Future<List<Post>> getPosts(int postId) {
-    return Future.delayed(Duration(seconds: 5), () {
+    return Future.delayed(const Duration(seconds: 5), () {
       if (postId != 25) {
         throw Exception("No post found");
       }
@@ -22,5 +22,11 @@ class MockPostRepository extends PostRepository {
         ),
       ];
     });
+  }
+
+  @override
+  Future<List<Post>> fetchPosts() {
+    // TODO: implement fetchPosts
+    throw UnimplementedError();
   }
 }

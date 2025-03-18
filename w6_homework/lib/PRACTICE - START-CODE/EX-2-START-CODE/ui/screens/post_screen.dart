@@ -18,7 +18,7 @@ class PostScreen extends StatelessWidget {
         actions: [
           IconButton(
             // 2- Fetch the post
-            onPressed: () => {postProvider.fetchPost(25)},
+            onPressed: () => {postProvider.fetchPosts()},
             icon: const Icon(Icons.update),
           ),
         ],
@@ -29,25 +29,27 @@ class PostScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildBody(PostProvider courseProvider) {
-    final postsValue = courseProvider.postsValue;
+  Widget _buildBody(PostProvider postProvider) {
+    final postValue = postProvider.postsValue;
 
-    if (postsValue == null) {
-      return Text('Tap refresh to display post'); // display an empty state
+    if (postValue == null) {
+      return const Text(
+          'Tap refresh to display post'); // display an empty state
     }
 
-    switch (postsValue.state) {
+    switch (postValue.state) {
       case AsyncValueState.loading:
-        return CircularProgressIndicator(); // display a progress
+        return const CircularProgressIndicator(); // display a progress
 
       case AsyncValueState.error:
-        return Text('Error: ${postsValue.error}'); // display a error
+        return Text('Error: ${postValue.error}');
+      // display a error
 
       case AsyncValueState.success:
         return ListView.builder(
-          itemCount: postsValue.data!.length,
+          itemCount: postValue.data!.length,
           itemBuilder: (context, index) =>
-              PostCard(post: postsValue.data![index]),
+              PostCard(post: postValue.data![index]),
         ); // display the post
     }
   }

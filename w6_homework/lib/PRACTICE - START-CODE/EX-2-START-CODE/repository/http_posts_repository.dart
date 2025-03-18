@@ -9,7 +9,6 @@ class HttpPostsRepository extends PostRepository {
 
   @override
   Future<List<Post>> fetchPosts() async {
-    await Future.delayed(const Duration(seconds: 5));
     final response = await http.get(Uri.parse(url));
 
     if (response.statusCode == 200) {

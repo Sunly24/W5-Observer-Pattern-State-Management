@@ -37,14 +37,12 @@ class ColorTap extends StatelessWidget {
     print('Building ColorTap Widget: ${type.toString()}');
     return Consumer<ColorCounters>(
       builder: (context, colorCounters, child) {
-        // Get the correct tap count based on the card type
         final tapCount = type == CardType.red
             ? colorCounters.redTaps
             : colorCounters.blueTaps;
 
         return GestureDetector(
           onTap: () {
-            // Increment the appropriate counter
             if (type == CardType.red) {
               colorCounters.incrementRed();
             } else {
